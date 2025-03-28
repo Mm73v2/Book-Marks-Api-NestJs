@@ -1,12 +1,20 @@
-import { Body, Controller, Post } from "@nestjs/common";
+import {
+  Body,
+  Controller,
+  Post,
+  UsePipes,
+  ValidationPipe,
+} from "@nestjs/common";
 import { AuthService } from "./auth.service";
+import { AuthDto } from "src/dto";
 
 @Controller("auth")
 class AuthController {
   constructor(private authService: AuthService) {}
 
   @Post("signup")
-  signup(@Body() dto: any) {
+  @UsePipes(ValidationPipe)
+  signup(@Body() dto: AuthDto) {
     console.log(dto);
     return "this is test";
   }
