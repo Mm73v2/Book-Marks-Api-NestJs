@@ -20,8 +20,9 @@ class AuthController {
   }
 
   @Post("login")
-  login() {
-    return "this is test";
+  async login(@Body() dto: AuthDto) {
+    const user = await this.authService.login(dto);
+    return user;
   }
 }
 
