@@ -1,5 +1,5 @@
 import { ForbiddenException, Injectable } from "@nestjs/common";
-import { AuthDto } from "src/dto";
+import { AuthDto } from "src/auth/dto";
 import { PrismaService } from "src/prisma/prisma.service";
 import { hash, verify } from "argon2";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
@@ -54,7 +54,8 @@ class AuthService {
       throw new ForbiddenException("Credentials incorrect");
     }
 
-    return user;
+    const { password, ...rest } = user;
+    return rest;
   }
 }
 
