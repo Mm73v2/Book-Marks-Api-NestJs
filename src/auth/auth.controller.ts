@@ -14,9 +14,9 @@ class AuthController {
 
   @Post("signup")
   @UsePipes(ValidationPipe)
-  signup(@Body() dto: AuthDto) {
-    console.log(dto);
-    return "this is test";
+  async signup(@Body() dto: AuthDto) {
+    const user = await this.authService.signup(dto);
+    return user;
   }
 
   @Post("login")

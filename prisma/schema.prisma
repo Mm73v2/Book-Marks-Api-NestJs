@@ -18,8 +18,9 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   email String
-  firstName String
-  lastName String
+  firstName String?
+  lastName String?
+  password String
 }
 
 model Bookmark {
